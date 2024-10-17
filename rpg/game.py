@@ -1,3 +1,4 @@
+from rpg.enemy import Enemy
 from rpg.player import Player
 from rpg.equipment_resources import pj
 
@@ -12,18 +13,28 @@ class Game:
         zhn = Player(
             name="张海宁", HP=100, MP=100, AD=50, AP=50, AS=20, CRT=20, DEF=50, MDEF=50
         )
-
+        gbl = Enemy(
+            name="哥布林", HP=20, MP=10, AD=5, AP=5, AS=10, CRT=5, DEF=40, MDEF=40
+        )
         # 给这个玩家装备 装备
         # 比如添加破军
         zhn.add_equipment(pj)
 
         # 查看装备属性有没有应用到玩家身上
         # 结果应该是150
-        print(f"玩家{zhn.name}的生命值为{zhn.HP}")
-        print(f"玩家{zhn.name}的法力值为{zhn.MP}")
-        print(f"玩家{zhn.name}的物理攻击为{zhn.AD}")
-        print(f"玩家{zhn.name}的魔法攻击为{zhn.AP}")
-        print(f"玩家{zhn.name}的攻击速度为{zhn.AS}")
-        print(f"玩家{zhn.name}的暴击率为{zhn.CRT}")
-        print(f"玩家{zhn.name}的物理防御为{zhn.DEF}")
-        print(f"玩家{zhn.name}的魔法防御为{zhn.MDEF}")
+        print(zhn)
+        print(gbl)
+
+        # 玩家攻击哥布林
+        zhn.attact(gbl)
+
+        # 哥布林攻击玩家
+        gbl.attact(zhn)
+
+        # 查看玩家和哥布林剩余生命值
+        print(zhn.HP)
+        print(gbl.HP)
+
+        # 判断 玩家 和 哥布林 是否存活
+        print(zhn.is_alive())
+        print(gbl.is_alive())
